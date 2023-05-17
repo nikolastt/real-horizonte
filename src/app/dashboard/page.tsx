@@ -2,7 +2,6 @@ import { getServerSession } from "next-auth";
 import React from "react";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { prisma } from "../../lib/prismaDb";
-import AddTodo from "@/components/AddTodo";
 
 async function Dashboard() {
   const session = await getServerSession(authOptions);
