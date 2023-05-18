@@ -29,7 +29,6 @@ export default function RootLayout({
               <Header />
               <div className="h-[calc(100vh-79px)]">{children}</div>
             </div>
-            <Footer />
           </AuthProvider>
         </body>
       </html>

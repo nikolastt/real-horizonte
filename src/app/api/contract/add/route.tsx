@@ -23,7 +23,10 @@ export async function POST(req: Request, res: Response) {
   };
 
   try {
-    await axios.post("http://localhost:3000/api/emails/newContract", dataEmail);
+    await axios.post(
+      "https://real-horizonte.vercel.app/api/emails/newContract",
+      dataEmail
+    );
 
     return NextResponse.json({ status: "success" });
   } catch {
