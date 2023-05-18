@@ -31,7 +31,7 @@ export default function EmailNewContract({ name }: Props) {
               <Img
                 className="mx-auto"
                 width={200}
-                src="https://real-horizonte-seguros.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-seguro.a69a307a.png&w=256&q=75"
+                src="https://real-horizonte.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-seguro.a69a307a.png&w=256&q=75"
               />
             </Section>
 
