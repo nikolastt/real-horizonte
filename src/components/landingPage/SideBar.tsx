@@ -9,6 +9,7 @@ import {
   MdDashboard,
 } from "react-icons/md";
 import { BsQuestion } from "react-icons/bs";
+import { IoMdApps } from "react-icons/io";
 import ItemMenuSideBar from "./ItemMenuSideBar";
 import { signOut } from "next-auth/react";
 // import { signOut } from "next-auth/react";
@@ -77,20 +78,11 @@ const SideBar: React.FC<ISideBar> = ({ isOpen, name, image, closeMenu }) => {
 
           <ItemMenuSideBar
             closeMenu={closeMenu}
-            content="Dashboard"
-            href="/dashboard"
-            path="/dashboard"
+            content="App"
+            href="/app"
+            path="/app"
           >
-            <MdDashboard size={25} className="mx-3" />
-          </ItemMenuSideBar>
-
-          <ItemMenuSideBar
-            closeMenu={closeMenu}
-            content="Admin"
-            href="/admin"
-            path="/admin"
-          >
-            <MdAdminPanelSettings size={25} className="mx-3" />
+            <IoMdApps size={25} className="mx-3" />
           </ItemMenuSideBar>
 
           {!!name && (

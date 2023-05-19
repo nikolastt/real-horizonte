@@ -1,10 +1,12 @@
 import Footer from "@/components/landingPage/Footer";
+import Header from "@/components/landingPage/Header";
 import SwiperComponent from "@/components/landingPage/Swiper";
 
 export default function Home() {
   return (
     <>
-      <main className={`relative gap-3 flex flex-col`}>
+      <Header />
+      <main className={`relative gap-3 flex flex-col container`}>
         <div className="p-3 bg-gray-200">
           <SwiperComponent />
         </div>

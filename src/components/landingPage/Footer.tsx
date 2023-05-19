@@ -9,7 +9,7 @@ import {
 
 function Footer() {
   return (
-    <div className="bg-[#484c4f] mt-6">
+    <div className="bg-[#484c4f] mt-6 ">
       <div className="py-9 px-3 md:px-6 lg:max-w-7xl mx-auto flex flex-col gap-12 lg:grid lg:grid-cols-3">
         <div>
           <h2 className="text-2xl font-bold uppercase text-white">

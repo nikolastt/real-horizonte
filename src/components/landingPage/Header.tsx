@@ -15,7 +15,7 @@ function Header() {
   const { data: session } = useSession();
   return (
     <>
-      <div className="flex h-[79px] justify-between items-center ">
+      <div className="flex h-[79px] justify-between items-center container ">
         <Image src={Logo} alt="Logo" width={150} height={150} />
 
         <div className="hidden h-full flex-shrink-0  items-center space-x-6  md:flex ">
@@ -44,9 +44,9 @@ function Header() {
               </li>
             </a>
 
-            <a href="#typeClasses">
+            <a href="/app">
               <button className=" px-6 py-1 rounded-xl flex items-center justify-center font-semibold tracking-wider text-white bg-secondary uppercase  hover:bg-opacity-70 hover:text-primary transition-all ease-linear ">
-                Dashboard
+                App
               </button>
             </a>
           </ul>

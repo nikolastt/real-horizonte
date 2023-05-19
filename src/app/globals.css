@@ -12,5 +12,20 @@
     .button-secondary{
         @apply bg-secondary text-primary px-6 py-2 hover:bg-secondary/50 transition-all ease-linear
     }
+
+    .button-form{
+        @apply bg-primary text-primary-100 py-2 font-bold rounded-lg hover:bg-primary-800 transition-colors 
+    }
+
+    .container{
+        @apply px-6
+    }
+
     
+    
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
