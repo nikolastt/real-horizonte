@@ -15,7 +15,7 @@ function Header() {
   const { data: session } = useSession();
   return (
     <>
-      <div className="flex h-[79px] justify-between items-center container ">
+      <div className="flex h-[79px] justify-between items-center Container ">
         <Image src={Logo} alt="Logo" width={150} height={150} />
 
         <div className="hidden h-full flex-shrink-0  items-center space-x-6  md:flex ">

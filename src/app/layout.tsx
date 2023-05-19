@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <html lang="en">
+      <html lang="pt-BR">
         <body className={nunito.className}>
           <AuthProvider>{children}</AuthProvider>
         </body>

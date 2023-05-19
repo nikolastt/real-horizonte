@@ -19,7 +19,9 @@ function ButtonNav({ Icon, active, href }: Props) {
         <Icon
           className={` ${
             active ? "text-secondary h-9 w-9 " : "text-primary-100"
-          }  w-6 h-6 transition-all ease-in-out`}
+          }  ${
+            !active && "hover:scale-110"
+          } w-6 h-6 transition-all ease-in-out`}
         />
       </button>
     </Link>

@@ -8,7 +8,7 @@ type Props = {
 
 function HeaderApp({ image, name }: Props) {
   return (
-    <div className="container flex items-center py-9">
+    <div className="Container flex items-center py-9">
       <Image
         src={image}
         alt="Avatar User"

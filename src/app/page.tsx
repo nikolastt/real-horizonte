@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className={`relative gap-3 flex flex-col container`}>
+      <main className={`relative gap-3 flex flex-col Container`}>
         <div className="p-3 bg-gray-200">
           <SwiperComponent />
         </div>
