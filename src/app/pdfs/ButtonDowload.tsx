@@ -2,11 +2,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import PdfTest, { Pdf } from "./templates/PdfTest";
+import PdfTest, { Pdf } from "./templates/PDFSeguroAutomovel";
 import { usePDF } from "@react-pdf/renderer";
 
 function ButtonDowload() {
-  const [instance, setInstance] = usePDF({ document: Pdf });
+  const [instance, setInstance] = usePDF({ document: Pdf("nikolas") });
 
   if (instance.loading) return <div>Loading...</div>;
 
@@ -15,6 +15,8 @@ function ButtonDowload() {
   return (
     <div>
       <a href={instance.url!} download="test.pdf">
+        {instance.url}
+        <hr />
         Dowload
       </a>
     </div>

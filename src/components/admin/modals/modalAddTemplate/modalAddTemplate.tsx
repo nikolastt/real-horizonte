@@ -2,17 +2,17 @@
 
 import React, { useState } from "react";
 import Modal from "react-modal";
-import AllUsers from "./components/AllUsers";
-import { User } from "@prisma/client";
-import UserCardRow from "./components/UserCardRow";
-import { ClipLoader } from "react-spinners";
-import axios from "axios";
-import Templates from "./components/Templates";
 
-function ModalAddContract() {
+import { User } from "@prisma/client";
+
+import { ClipLoader } from "react-spinners";
+
+import FormAddTemplate from "./components/FormAddTemplate";
+
+function ModalAddTemplate() {
   Modal.setAppElement("div");
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState<User>();
+
   const [loading, setLoading] = useState(false);
 
   const closeModal = () => {
@@ -26,36 +26,13 @@ function ModalAddContract() {
         onClick={() => setIsOpen(true)}
         className="bg-primary text-white px-6 py-2 hover:bg-primary/50 transition-all ease-linear"
       >
-        Adicionar Contrato
+        Adicionar Template
       </button>
     );
   }
 
   const clearComponent = () => {
-    setUser(undefined);
     setLoading(false);
-  };
-
-  const setUserSelected = (user: User) => {
-    setUser(user);
-  };
-
-  const handleAdd = async () => {
-    setLoading(true);
-    try {
-      const data = {
-        email: user?.email,
-        name: user?.name,
-        userId: user?.id,
-      };
-
-      await axios.post("/api/contract/add", data);
-
-      closeModal();
-    } catch (e) {
-      console.log(e);
-      setLoading(false);
-    }
   };
 
   return (
@@ -76,25 +53,10 @@ function ModalAddContract() {
         ) : (
           <>
             <h2 className="text-center font-bold text-xl uppercase">
-              Adicionar contrato
+              Adicionar Template
             </h2>
 
-            <div>
-              {!user ? (
-                <AllUsers setUser={setUserSelected} />
-              ) : (
-                <div className="flex flex-col gap-3 mt-3">
-                  <span className="text-lg">Usuário Selecionado</span>
-                  <UserCardRow
-                    image={user.image!}
-                    name={user.name!}
-                    click={false}
-                  />
-
-                  <Templates />
-                </div>
-              )}
-            </div>
+            <FormAddTemplate />
           </>
         )}
       </Modal>
@@ -102,4 +64,4 @@ function ModalAddContract() {
   );
 }
 
-export default ModalAddContract;
+export default ModalAddTemplate;

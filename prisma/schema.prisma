@@ -75,7 +75,17 @@ model Contract {
 
   signature   Signature? @relation(fields: [signatureId], references: [id])
   signatureId String
+  template    Template   @relation(fields: [templateId], references: [id])
+  templateId  String
+  blob        String?
 
   @@index([userId])
   @@index([signatureId])
+  @@index([templateId])
+}
+
+model Template {
+  id       String     @id @default(uuid())
+  name     String     @unique
+  Contract Contract[]
 }
