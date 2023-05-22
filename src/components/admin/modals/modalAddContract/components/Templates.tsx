@@ -1,14 +1,25 @@
 "use client";
 
+import { getDataInstance } from "@/app/pdfs/getDataInstance";
 import { Template } from "@prisma/client";
+import { usePDF } from "@react-pdf/renderer";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+import React, {
+  JSXElementConstructor,
+  ReactElement,
+  useEffect,
+  useState,
+} from "react";
 import { ClipLoader } from "react-spinners";
 
-function Templates() {
+type Props = {
+  setTemplate: (template: Template) => void;
+};
+
+function Templates({ setTemplate }: Props) {
   const [templates, setTemplates] = useState<Template[]>([]);
 
-  console.log(templates);
   const [loading, setLoading] = useState(false);
 
   const getTemplates = async () => {
@@ -23,6 +34,13 @@ function Templates() {
       setLoading(false);
     }
   };
+
+  //
+  //
+  //
+  //
+  //
+  // VISUALIZAR TEMPLATES DISPONÍVEIS
 
   return (
     <div>
@@ -43,8 +61,15 @@ function Templates() {
           </>
         )}
       </div>
+
       {templates.map((template) => (
-        <span key={template.id}>{template.name}</span>
+        <button
+          className={`button-secondary `}
+          onClick={() => setTemplate(template)}
+          key={template.id}
+        >
+          {template.name}
+        </button>
       ))}
     </div>
   );

@@ -17,6 +17,7 @@ import ReactPDF, {
 } from "@react-pdf/renderer";
 
 import { createTw } from "react-pdf-tailwind";
+import { getDataInstance } from "../getDataInstance";
 
 const tw = createTw({
   theme: {
@@ -66,7 +67,7 @@ export const Pdf = (name) => (
     <Page size="A4" style={tw("p-12")}>
       <View>
         <Text style={tw("text-sm font-bold")}>
-          PROPOSTA DE SEGUROS E AUTOMOVEL RCF-V E APP
+          PROPOSTA DE SEGUROS E AUTOMOVEL RCF-V E APP olá {name}
         </Text>
       </View>
 

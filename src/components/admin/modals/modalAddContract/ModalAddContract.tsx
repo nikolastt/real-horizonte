@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import AllUsers from "./components/AllUsers";
-import { User } from "@prisma/client";
+import { Template, User } from "@prisma/client";
 import UserCardRow from "./components/UserCardRow";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import Templates from "./components/Templates";
+import FormAddContract, {
+  TemplateSchemaAddContract,
+} from "./components/FormAddContract";
 
 function ModalAddContract() {
   Modal.setAppElement("div");
@@ -15,9 +18,16 @@ function ModalAddContract() {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(false);
 
+  const [template, setTemplate] = useState<Template>();
+
   const closeModal = () => {
     clearComponent();
     setIsOpen(false);
+  };
+  const clearComponent = () => {
+    setUser(undefined);
+    setLoading(false);
+    setTemplate(undefined);
   };
 
   if (!isOpen) {
@@ -31,27 +41,21 @@ function ModalAddContract() {
     );
   }
 
-  const clearComponent = () => {
-    setUser(undefined);
-    setLoading(false);
-  };
-
-  const setUserSelected = (user: User) => {
-    setUser(user);
-  };
-
-  const handleAdd = async () => {
-    setLoading(true);
+  const onSubmitAddContract = async (data: TemplateSchemaAddContract) => {
+    // setLoading(true);
     try {
-      const data = {
+      const dataAxios = {
         email: user?.email,
         name: user?.name,
         userId: user?.id,
+        title: data.title,
+        tags: data.tags,
+        templateId: template?.id,
       };
 
-      await axios.post("/api/contract/add", data);
+      await axios.post("/api/contract/add", dataAxios);
 
-      closeModal();
+      // closeModal();
     } catch (e) {
       console.log(e);
       setLoading(false);
@@ -81,7 +85,7 @@ function ModalAddContract() {
 
             <div>
               {!user ? (
-                <AllUsers setUser={setUserSelected} />
+                <AllUsers setUser={setUser} />
               ) : (
                 <div className="flex flex-col gap-3 mt-3">
                   <span className="text-lg">Usuário Selecionado</span>
@@ -91,7 +95,11 @@ function ModalAddContract() {
                     click={false}
                   />
 
-                  <Templates />
+                  <Templates setTemplate={setTemplate} />
+
+                  {template && (
+                    <FormAddContract onSubmit={onSubmitAddContract} />
+                  )}
                 </div>
               )}
             </div>

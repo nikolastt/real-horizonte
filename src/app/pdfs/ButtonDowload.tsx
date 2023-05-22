@@ -12,6 +12,8 @@ function ButtonDowload() {
 
   if (instance.error) return <div>Error</div>;
 
+  console.log(instance, "Blob");
+
   return (
     <div>
       <a href={instance.url!} download="test.pdf">
