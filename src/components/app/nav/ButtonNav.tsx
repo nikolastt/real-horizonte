@@ -11,7 +11,7 @@ type Props = {
 function ButtonNav({ Icon, active, href }: Props) {
   return (
     <Link href={href} className="flex items-center justify-center">
-      <button
+      <div
         className={`${
           active && "-translate-y-4 bg-primary p-6 rounded-full"
         } transition-all ease-in-out `}
@@ -23,7 +23,7 @@ function ButtonNav({ Icon, active, href }: Props) {
             !active && "hover:scale-110"
           } w-6 h-6 transition-all ease-in-out`}
         />
-      </button>
+      </div>
     </Link>
   );
 }
