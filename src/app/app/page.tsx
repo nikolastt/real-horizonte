@@ -28,25 +28,27 @@ async function App() {
   });
 
   return (
-    <div className="min-h-[calc(100vh-79px)] Container">
-      {/* <div className=" h-2/3">
+    <>
+      <div className="min-h-[calc(100vh-79px)] Container">
+        {/* <div className=" h-2/3">
         <PdfTest />
       </div>
       <Button />
 
       {Pdf} */}
-      <div className="flex flex-col gap-6 pt-9">
-        <h2 className="text-primary font-bold text-xl">
-          Documentos esperando assinatura
-        </h2>
-        {user?.contracts.map((contractNotSigned) => (
-          <DocumentsNotSigned
-            key={contractNotSigned.id}
-            contract={contractNotSigned}
-          />
-        ))}
+        <div className="flex flex-col gap-6 pt-9">
+          <h2 className="text-primary font-bold text-xl">
+            Documentos esperando assinatura
+          </h2>
+          {user?.contracts.map((contractNotSigned) => (
+            <DocumentsNotSigned
+              key={contractNotSigned.id}
+              contract={contractNotSigned}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
