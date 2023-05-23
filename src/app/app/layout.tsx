@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 import MenuNav from "@/components/app/nav/MenuNav";
 import HeaderApp from "@/components/app/HeaderApp";
 
+import "react-tooltip/dist/react-tooltip.css";
+import "reactjs-popup/dist/index.css";
+
 type Props = {
   children: React.ReactNode;
 };
@@ -17,7 +20,7 @@ async function LayoutApp({ children }: Props) {
   }
 
   return (
-    <div className="bg-primary-300 h-screen text-primary">
+    <div className="bg-primary-300 min-h-screen text-primary">
       <MenuNav />
 
       <HeaderApp name={session.user?.name!} image={session.user?.image!} />

@@ -7,6 +7,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { TbSignatureOff } from "react-icons/tb";
 import Link from "next/link";
 import Image from "next/image";
+import CardSignature from "@/components/signatures/CardSignature";
 
 async function Signatures() {
   const session = await getServerSession(authOptions);
@@ -25,15 +26,28 @@ async function Signatures() {
   return (
     <div className="min-h-[calc(100vh-79px)] Container">
       {!!signatures && signatures?.length > 0 ? (
-        user?.signatures.map((signature) => (
-          <Image
-            src={signature.url}
-            key={signature.id}
-            alt="Assinatura"
-            width={200}
-            height={300}
-          />
-        ))
+        <>
+          <h2 className="text-2xl text-primary font-bold pt-9 ">
+            Minhas Assinaturas
+          </h2>
+          <div className="grid grid-cols-2 gap-3 mt-6">
+            {user?.signatures.map((signature, i) => (
+              <>
+                <CardSignature
+                  key={signature.id}
+                  signature={signature}
+                  index={i}
+                />
+              </>
+            ))}
+          </div>
+
+          <Link href="/app/addSignature" className="w-full">
+            <button className="button rounded w-full mt-6">
+              Adicionar Assinatura
+            </button>
+          </Link>
+        </>
       ) : (
         <div className="flex flex-col items-center gap-6 pt-20">
           <div className="w-full flex justify-center">
@@ -45,7 +59,7 @@ async function Signatures() {
           </h2>
 
           <Link href="/app/addSignature">
-            <button className="button rounded">Adicionar Assinaturas</button>
+            <button className="button rounded">Adicionar Assinatura</button>
           </Link>
         </div>
       )}

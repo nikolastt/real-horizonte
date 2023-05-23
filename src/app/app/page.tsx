@@ -36,7 +36,7 @@ async function App() {
       <Button />
 
       {Pdf} */}
-        <div className="flex flex-col gap-6 pt-9">
+        <div className="flex flex-col gap-6 pt-9 pb-36">
           <h2 className="text-primary font-bold text-xl">
             Documentos esperando assinatura
           </h2>

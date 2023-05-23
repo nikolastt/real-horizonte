@@ -5,12 +5,21 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
 import SignaturePad from "react-signature-canvas";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
 type Props = {
   userId: string;
 };
 
-const addSignature = async (url: string, userId: string) => {
+const addSignature = async (
+  url: string,
+  userId: string,
+  router: AppRouterInstance
+) => {
+  const notification = toast.loading("Loading...");
+
   const data = {
     userId,
     url,
@@ -18,8 +27,15 @@ const addSignature = async (url: string, userId: string) => {
 
   try {
     await axios.post("/api/signature", data);
+    toast.success("Assinatura adicionada!", {
+      id: notification,
+    });
+    router.replace("/app/signatures");
   } catch (e) {
     console.log(e);
+    toast.error("Erro ao adicionar assinatura!", {
+      id: notification,
+    });
   }
 };
 
@@ -27,7 +43,12 @@ function Signature({ userId }: Props) {
   const [trimmedDataURL, setTrimmedDataURL] = useState<string | undefined>();
   const [sigPad, setSigPad] = useState<SignaturePad | null>();
 
+  const router = useRouter();
   const [color, setColor] = useState("");
+
+  const teste = (router: AppRouterInstance) => {
+    router.replace("/app/signature");
+  };
 
   const clear = () => {
     sigPad?.clear();
@@ -114,7 +135,7 @@ function Signature({ userId }: Props) {
           />
           <div className="flex gap-3">
             <button className="button-secondary rounded w-full">
-              <a href={trimmedDataURL} download>
+              <a href={trimmedDataURL} download="signature.png">
                 Baixar assinatura
               </a>
             </button>
@@ -125,10 +146,12 @@ function Signature({ userId }: Props) {
 
           <button
             className="button rounded"
-            onClick={() => addSignature(trimmedDataURL, userId)}
+            onClick={() => addSignature(trimmedDataURL, userId, router)}
           >
             Adicionar assinatura
           </button>
+
+          <button onClick={() => teste(router)}>teste</button>
         </div>
       )}
     </main>

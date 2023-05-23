@@ -1,10 +1,10 @@
-import Header from "@/components/landingPage/Header";
 import "./globals.css";
-import Footer from "@/components/landingPage/Footer";
-import Head from "next/head";
+
 import AuthProvider from "@/providers/AuthProvider";
 
 import { Nunito } from "next/font/google";
+
+import { Toaster } from "react-hot-toast";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -26,6 +26,27 @@ export default function RootLayout({
       <html lang="pt-BR">
         <body className={nunito.className}>
           <AuthProvider>{children}</AuthProvider>
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+            gutter={8}
+            containerClassName=""
+            containerStyle={{}}
+            toastOptions={{
+              // Define default options
+              className: "",
+              duration: 5000,
+              style: {
+                background: "#0e1225",
+                color: "#f8a961",
+              },
+
+              // Default options for specific types
+              success: {
+                duration: 5000,
+              },
+            }}
+          />
         </body>
       </html>
     </>
