@@ -3,13 +3,14 @@ import { prisma } from "../../../lib/prismaDb";
 import { request } from "http";
 
 export async function POST(req: Request, res: Response) {
-  const { userId, url } = await req.json();
+  const { userId, url, path } = await req.json();
 
   try {
     await prisma.signature.create({
       data: {
         url,
         userId,
+        path,
       },
     });
   } catch (e) {

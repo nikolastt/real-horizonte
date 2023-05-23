@@ -1,4 +1,3 @@
-import { throws } from "assert";
 import { prisma } from "../../../lib/prismaDb";
 import { NextResponse } from "next/server";
 
@@ -15,7 +14,7 @@ export async function POST(req: Request, res: Response) {
     return NextResponse.error();
   }
 
-  return NextResponse.json({ status: "OK!" });
+  return NextResponse.json({ });
 }
 
 export async function GET() {

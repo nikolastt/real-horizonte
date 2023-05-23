@@ -1,6 +1,8 @@
 "use client";
 
+import { storage } from "@/lib/firebase";
 import axios from "axios";
+import { deleteObject, ref } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -11,10 +13,11 @@ import Popup from "reactjs-popup";
 
 type Props = {
   index: number;
+  path: string;
   id: string;
 };
 
-function TrashIcon({ index, id }: Props) {
+function TrashIcon({ index, id, path }: Props) {
   const [openTooltip, setOpenTooltip] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -24,20 +27,25 @@ function TrashIcon({ index, id }: Props) {
     const notification = toast.loading("Loading...");
     setLoading(true);
 
+    const signatureRef = ref(storage, path);
+
     const data = {
       id,
     };
 
     try {
       await axios.post(`/api/signature/delete`, data);
+      await deleteObject(signatureRef);
       toast.success("Assinatura excluída", {
         id: notification,
       });
       setLoading(false);
+      setOpenTooltip(false);
       router.refresh();
     } catch (err) {
       console.log(err);
       setLoading(false);
+      setOpenTooltip(false);
       toast.error("Não foi possível excluir", {
         id: notification,
       });

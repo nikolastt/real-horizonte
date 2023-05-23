@@ -21,7 +21,11 @@ async function VisualizerPdf({ params: { id } }: Props) {
 
   return (
     <div className="h-[calc(100vh-79px)] Container">
-      <ViewPdf template={contract?.template} signed={signed} />
+      <ViewPdf
+        template={contract?.template}
+        signed={signed}
+        imageSignature={contract?.signature?.url}
+      />
     </div>
   );
 }

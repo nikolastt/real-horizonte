@@ -20,8 +20,6 @@ type Props = {
 };
 
 function FormAddContract({ onSubmit }: Props) {
-  const [loading, setLoading] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -51,19 +49,13 @@ function FormAddContract({ onSubmit }: Props) {
         />
         <span className="text-red-400 text-xs">{errors?.tags?.message}</span>
 
-        {loading ? (
-          <div className="w-full h-full flex justify-center items-center">
-            <ClipLoader size={50} />
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={handleSubmit(onSubmit)}
-            className="button-form mt-3"
-          >
-            Adicionar contratoaa
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={handleSubmit(onSubmit)}
+          className="button-form mt-3"
+        >
+          Adicionar contrato
+        </button>
       </div>
     </form>
   );

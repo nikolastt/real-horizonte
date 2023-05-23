@@ -11,7 +11,7 @@ type Props = {
 function CardSignature({ signature, index }: Props) {
   return (
     <div className="bg-primary-100 rounded-lg relative h-28 ">
-      <TrashIcon index={index} id={signature.id} />
+      <TrashIcon index={index} id={signature.id} path={signature.path} />
 
       <Image
         src={signature.url}

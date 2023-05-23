@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Pdf = (name) => (
+export const Pdf = (name, imageSignature) => (
   // <div className="p-9 bg-white">
   <Document>
     <Page size="A4" style={tw("p-12")}>
@@ -186,11 +186,13 @@ export const Pdf = (name) => (
       </View>
 
       <View style={styles.signature}>
-        <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Wonho-Signature.svg/2560px-Wonho-Signature.svg.png"
-          style={styles.image}
-          alt="Signature Image"
-        />
+        {imageSignature && (
+          <Image
+            src={imageSignature}
+            style={styles.image}
+            alt="Signature Image"
+          />
+        )}
         <Svg
           height="10"
           width="100%"

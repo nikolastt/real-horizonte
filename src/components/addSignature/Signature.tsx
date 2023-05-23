@@ -1,53 +1,64 @@
 "use client";
 
-import { User } from "@prisma/client";
 import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
 import SignaturePad from "react-signature-canvas";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { storage } from "@/lib/firebase";
+import { ClipLoader } from "react-spinners";
 
 type Props = {
   userId: string;
+  email: string;
 };
 
-const addSignature = async (
-  url: string,
-  userId: string,
-  router: AppRouterInstance
-) => {
-  const notification = toast.loading("Loading...");
-
-  const data = {
-    userId,
-    url,
-  };
-
-  try {
-    await axios.post("/api/signature", data);
-    toast.success("Assinatura adicionada!", {
-      id: notification,
-    });
-    router.replace("/app/signatures");
-  } catch (e) {
-    console.log(e);
-    toast.error("Erro ao adicionar assinatura!", {
-      id: notification,
-    });
-  }
-};
-
-function Signature({ userId }: Props) {
+function Signature({ userId, email }: Props) {
   const [trimmedDataURL, setTrimmedDataURL] = useState<string | undefined>();
   const [sigPad, setSigPad] = useState<SignaturePad | null>();
+
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const [color, setColor] = useState("");
 
-  const teste = (router: AppRouterInstance) => {
-    router.replace("/app/signature");
+  const addSignature = async () => {
+    const notification = toast.loading("Loading...");
+    setLoading(true);
+
+    const now = new Date();
+    const time = now.getTime();
+    const storageRef = ref(storage, String(time));
+
+    try {
+      const response = await uploadString(
+        storageRef,
+        trimmedDataURL!,
+        "data_url"
+      );
+      const path = response.ref.fullPath;
+      const urlDowload = await getDownloadURL(response.ref);
+
+      const data = {
+        userId,
+        url: urlDowload,
+        path,
+      };
+      await axios.post("/api/signature", data);
+      toast.success("Assinatura adicionada!", {
+        id: notification,
+      });
+      setLoading(false);
+      router.push("/app/signatures");
+    } catch (e) {
+      console.log(e);
+      toast.error("Erro ao adicionar assinatura!", {
+        id: notification,
+      });
+      setLoading(false);
+    }
   };
 
   const clear = () => {
@@ -133,25 +144,32 @@ function Signature({ userId }: Props) {
             height={300}
             className="bg-white w-full min-h-[200px] p-3 rounded-lg"
           />
-          <div className="flex gap-3">
-            <button className="button-secondary rounded w-full">
-              <a href={trimmedDataURL} download="signature.png">
-                Baixar assinatura
-              </a>
-            </button>
-            <button onClick={clear} className="button-secondary rounded w-full">
-              Refazer
-            </button>
-          </div>
 
-          <button
-            className="button rounded"
-            onClick={() => addSignature(trimmedDataURL, userId, router)}
-          >
-            Adicionar assinatura
-          </button>
-
-          <button onClick={() => teste(router)}>teste</button>
+          {!!loading ? (
+            <div className="w-full h-full flex justify-center items-center">
+              <ClipLoader size={50} />
+            </div>
+          ) : (
+            <>
+              {" "}
+              <div className="flex gap-3">
+                <button className="button-secondary rounded w-full">
+                  <a href={trimmedDataURL} download="signature.png">
+                    Baixar assinatura
+                  </a>
+                </button>
+                <button
+                  onClick={clear}
+                  className="button-secondary rounded w-full"
+                >
+                  Refazer
+                </button>
+              </div>
+              <button className="button rounded" onClick={addSignature}>
+                Adicionar assinatura
+              </button>
+            </>
+          )}
         </div>
       )}
     </main>

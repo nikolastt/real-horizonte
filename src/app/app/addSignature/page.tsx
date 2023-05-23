@@ -7,18 +7,19 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function AddSignature() {
   const session = await getServerSession(authOptions);
-  const userId = await prisma.user.findFirst({
+  const user = await prisma.user.findFirst({
     where: {
       email: session?.user?.email,
     },
     select: {
       id: true,
+      email: true,
     },
   });
 
   return (
     <div className="min-h-[calc(100vh-79px)] Container">
-      <Signature userId={userId?.id!} />
+      <Signature userId={user?.id!} email={user?.email!} />
     </div>
   );
 }

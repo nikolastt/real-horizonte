@@ -11,6 +11,7 @@ import Templates from "./components/Templates";
 import FormAddContract, {
   TemplateSchemaAddContract,
 } from "./components/FormAddContract";
+import { toast } from "react-hot-toast";
 
 function ModalAddContract() {
   Modal.setAppElement("div");
@@ -42,7 +43,8 @@ function ModalAddContract() {
   }
 
   const onSubmitAddContract = async (data: TemplateSchemaAddContract) => {
-    // setLoading(true);
+    const notification = toast.loading("Loading...");
+    setLoading(true);
     try {
       const dataAxios = {
         email: user?.email,
@@ -54,11 +56,13 @@ function ModalAddContract() {
       };
 
       await axios.post("/api/contract/add", dataAxios);
+      toast.success("Contrato adicionado", { id: notification });
 
-      // closeModal();
+      closeModal();
     } catch (e) {
       console.log(e);
       setLoading(false);
+      toast.error("Erro ao aidionar contrato", { id: notification });
     }
   };
 

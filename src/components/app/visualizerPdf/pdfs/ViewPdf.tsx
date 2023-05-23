@@ -9,9 +9,11 @@ import { ClipLoader } from "react-spinners";
 type Props = {
   template: Template | undefined;
   signed?: boolean;
+  name?: string;
+  imageSignature?: string;
 };
 
-function ViewPdf({ template, signed }: Props) {
+function ViewPdf({ template, signed, name, imageSignature }: Props) {
   const [client, setclient] = useState(false);
 
   const templatePdf = getPdfFromTemplateController(template);
@@ -28,7 +30,7 @@ function ViewPdf({ template, signed }: Props) {
             className="w-full h-2/3 rounded-xl overflow-hidden "
             showToolbar={true}
           >
-            {templatePdf?.("Nikolas")}
+            {templatePdf?.(name, imageSignature)}
           </PDFViewer>
 
           {!signed && (
