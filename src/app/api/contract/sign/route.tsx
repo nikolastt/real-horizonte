@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { prisma } from "../../../../lib/prismaDb";
 
 export async function POST(req: Request) {
   const { signatureId, contractId } = await req.json();
@@ -6,7 +7,7 @@ export async function POST(req: Request) {
   const now = new Date();
 
   try {
-    await prisma?.contract.update({
+    await prisma.contract.update({
       where: {
         id: contractId,
       },
