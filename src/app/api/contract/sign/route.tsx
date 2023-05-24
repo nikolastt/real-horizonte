@@ -15,12 +15,9 @@ export async function POST(req: Request) {
         signedIn: now,
       },
     });
+    return NextResponse.json({});
   } catch (e) {
     console.log(e);
     return NextResponse.error();
   }
-
-  console.log(signatureId, contractId);
-
-  return NextResponse.json({});
 }
