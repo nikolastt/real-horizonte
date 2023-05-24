@@ -8,15 +8,24 @@ import { Signature, Template } from "@prisma/client";
 import { getPdfFromTemplateController } from "@/helpers/getPdfFromTemplate";
 
 type Props = {
-  template: Template;
+  template: Template | undefined;
   name?: String | null;
+  text?: String;
+  imageSignature?: String;
+  buttonStyle?: String;
 };
 
-function ButtonDowload({ template, name }: Props) {
+function ButtonDowload({
+  template,
+  name,
+  imageSignature,
+  text = "Visualizar Contrato",
+  buttonStyle,
+}: Props) {
   const templatePdf = getPdfFromTemplateController(template);
 
   const [instance, setInstance] = usePDF({
-    document: templatePdf?.(name)!,
+    document: templatePdf?.(name, imageSignature)!,
   });
 
   if (instance.loading) return <div>Loading...</div>;
@@ -24,9 +33,11 @@ function ButtonDowload({ template, name }: Props) {
   if (instance.error) return <div>Error</div>;
 
   return (
-    <a href={instance.url!} download="contract.pdf">
-      <button className="button rounded">Visualizar contrato</button>
-    </a>
+    <button className={`button rounded ${buttonStyle} `}>
+      <a href={instance.url!} download="contract.pdf">
+        {text}
+      </a>
+    </button>
   );
 }
 

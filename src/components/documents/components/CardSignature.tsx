@@ -3,21 +3,31 @@ import Image from "next/image";
 import React from "react";
 
 type Props = {
-  signature: Signature;
-  setSignature: (signature: Signature) => void;
+  signature?: Signature;
+  setSignature?: (signature: Signature) => void;
+
+  clickable?: boolean;
 };
 
-function CardSignature({ signature, setSignature }: Props) {
+function CardSignature({ signature, setSignature, clickable = false }: Props) {
+  const handleClick = () => {
+    if (clickable && !!signature) {
+      setSignature?.(signature);
+    }
+  };
   return (
     <div
-      onClick={() => setSignature(signature)}
-      className="w-full h-24 cursor-poiter relative border border-primary rounded-lg hover:border-secondary transition-all ease-linear hover:bg-primary/20 hover:scale-105 "
+      onClick={handleClick}
+      className={`w-full h-36 lg:h-52 ${
+        clickable &&
+        "cursor-pointer !h-24 lg:!h-36 hover:bg-primary/20 hover:scale-105"
+      } relative border border-primary rounded-lg hover:border-secondary transition-all ease-linear `}
     >
       <Image
-        src={signature.url}
+        src={signature?.url || ""}
         fill
         alt="Signature"
-        className="p-3 cursor-pointer"
+        className={`p-3 ${clickable && "cursor-pointer"}`}
       />
     </div>
   );

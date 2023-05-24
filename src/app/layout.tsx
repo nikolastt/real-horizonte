@@ -45,6 +45,9 @@ export default function RootLayout({
               success: {
                 duration: 5000,
               },
+              loading: {
+                duration: 20000,
+              },
             }}
           />
         </body>

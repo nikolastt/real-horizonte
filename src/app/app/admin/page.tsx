@@ -4,7 +4,7 @@ import React from "react";
 
 function Admin() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="grid grid-cols-2 gap-3 Container">
       <ModalAddContract />
       <ModalAddTemplate />
     </div>

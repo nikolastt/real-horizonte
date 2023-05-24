@@ -8,9 +8,10 @@ import CardSignature from "./CardSignature";
 
 type Props = {
   userId?: string;
+  signinDoc: (signature: Signature) => void;
 };
 
-function UserSignatures({ userId }: Props) {
+function UserSignatures({ userId, signinDoc }: Props) {
   const [signatures, setSignatures] = useState<Signature[]>();
 
   const [signatureSelected, setSignatureSelected] = useState<Signature>();
@@ -39,20 +40,30 @@ function UserSignatures({ userId }: Props) {
             {!signatureSelected ? (
               <>
                 <h2 className=" font-bold  ">Selecione uma assinatura</h2>
-                <div className="grid grid-cols-2 mt-6 gap-3 w-full">
+                <div className="grid grid-cols-2 lg:grid-cols-4 mt-6 gap-3 w-full">
                   {signatures?.map((signature) => (
                     <CardSignature
                       key={signature.id}
                       signature={signature}
                       setSignature={setSignatureSelected}
+                      clickable
                     />
                   ))}
                 </div>
               </>
             ) : (
-              <div>
-                <h2 className=" font-bold  ">Assinatura selecionada</h2>
-                <CardSignature />
+              <div className="max-w-5xl mx-auto">
+                <h2 className=" font-bold  mb-6">Assinatura selecionada</h2>
+                <div className="w-1/2 flex justify-center">
+                  <CardSignature signature={signatureSelected} />
+                </div>
+
+                <button
+                  onClick={() => signinDoc(signatureSelected)}
+                  className="button rounded w-full mt-3"
+                >
+                  Assinar Documento
+                </button>
               </div>
             )}
           </>
