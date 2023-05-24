@@ -17,8 +17,6 @@ type Props = {
 function ViewPdf({ template, signed, name, imageSignature }: Props) {
   const [client, setclient] = useState(false);
 
-  console.log(name, "Name");
-
   const templatePdf = getPdfFromTemplateController(template);
 
   useEffect(() => {

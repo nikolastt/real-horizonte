@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { User } from "@prisma/client";
 import axios from "axios";
 import Image from "next/image";
+import { Tooltip } from "react-tooltip";
 
 type Props = {
   email: string;
@@ -34,13 +35,16 @@ function MenuNav({ email }: Props) {
     <div className="Container w-full fixed bottom-6 left-0 right-0 z-50 ">
       <div className="h-16 rounded-full bg-primary flex justify-around items-center max-w-lg mx-auto">
         {user?.image && (
-          <Image
-            src={user?.image!}
-            width={24}
-            height={24}
-            alt="Avatar"
-            className="rounded-full p-[3px] w-12 h-12 border border-secondary cursor-pointer "
-          />
+          <div id="my-tooltip">
+            <Image
+              src={user?.image!}
+              id="#my-tooltip"
+              width={24}
+              height={24}
+              alt="Avatar"
+              className="rounded-full p-[3px] w-12 h-12 border border-secondary cursor-pointer z-20"
+            />
+          </div>
         )}
 
         <ButtonNav

@@ -1,7 +1,4 @@
 import React from "react";
-import PdfTest, { Pdf } from "../pdfs/templates/PDFSeguroAutomovel";
-import ButtonDowload from "../pdfs/ButtonDowload";
-import dynamic from "next/dynamic";
 
 import { prisma } from "../../lib/prismaDb";
 import { getServerSession } from "next-auth";
@@ -9,8 +6,7 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import DocumentsNotSigned from "@/components/documents/DocumentsNotSigned";
 import Link from "next/link";
 import { TbNotesOff } from "react-icons/tb";
-
-const Button = dynamic(() => import("../pdfs/ButtonDowload"), { ssr: false });
+import { Tooltip } from "react-tooltip";
 
 async function App() {
   const session = await getServerSession(authOptions);
@@ -41,6 +37,11 @@ async function App() {
       <Button />
 
       {Pdf} */}
+
+        {/* <span className="text-secondary" id="#teste">
+          <Tooltip id="teste" content="Hello world!" className="z-50" />
+          oiiiii
+        </span> */}
 
         {user?.contracts.length && user?.contracts?.length > 0 ? (
           <div className="flex flex-col gap-6 pt-9 pb-36">

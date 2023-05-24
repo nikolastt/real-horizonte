@@ -2,6 +2,7 @@ import { AuthOptions } from "next-auth";
 import { prisma } from "../../../../lib/prismaDb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth/next";
 
 export const authOptions: AuthOptions = {
@@ -11,6 +12,18 @@ export const authOptions: AuthOptions = {
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
+    }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID!,
+      clientSecret: process.env.GOOGLE_SECRET!,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
     }),
 
     // CredentialsProvider({
