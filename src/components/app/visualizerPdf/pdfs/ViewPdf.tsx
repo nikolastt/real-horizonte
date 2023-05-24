@@ -46,6 +46,7 @@ function ViewPdf({ template, signed, name, imageSignature }: Props) {
             <ButtonDowload
               template={template}
               imageSignature={imageSignature}
+              name={name}
               buttonStyle={`w-full ${signed && "col-span-2"}`}
               text="Baixar Contrato"
             />
