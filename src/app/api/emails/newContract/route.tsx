@@ -19,7 +19,7 @@ export async function POST(req: Request, res: Response) {
   const emailHtml = render(<EmailNewContract name={name} />);
 
   const options = {
-    from: "Cross Module <nikolasbitencourtt@gmail.com>",
+    from: "Real Horizonte <nikolasbitencourtt@gmail.com>",
     to: email,
     subject: "Novo Contrato Disponível",
     html: emailHtml,

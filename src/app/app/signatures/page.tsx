@@ -30,7 +30,7 @@ async function Signatures() {
           <h2 className="text-2xl text-primary font-bold pt-9 ">
             Minhas Assinaturas
           </h2>
-          <div className="grid grid-cols-2 gap-3 mt-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
             {user?.signatures.map((signature, i) => (
               <>
                 <CardSignature
@@ -51,7 +51,7 @@ async function Signatures() {
       ) : (
         <div className="flex flex-col items-center gap-6 pt-20">
           <div className="w-full flex justify-center">
-            <TbSignatureOff size={300} className="text-primary-400" />
+            <TbSignatureOff size={150} className="text-primary-400" />
           </div>
 
           <h2 className="font-bold text-2xl text-primary-500">

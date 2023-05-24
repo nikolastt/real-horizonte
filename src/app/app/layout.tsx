@@ -21,7 +21,7 @@ async function LayoutApp({ children }: Props) {
 
   return (
     <div className="bg-primary-300 min-h-screen text-primary">
-      <MenuNav />
+      <MenuNav email={session.user?.email!} />
 
       <HeaderApp name={session.user?.name!} image={session.user?.image!} />
       {children}
