@@ -51,7 +51,7 @@ function ModalLinkSignatures({ userId, contract }: Props) {
     };
 
     try {
-      await axios.put("/api/contract/sign", data);
+      await axios.post("/api/contract/sign", data);
       toast.success("Contrato assinado!", { id: notification });
       closeModal();
       router.refresh();

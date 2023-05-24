@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function PUT(req: Request) {
+export async function POST(req: Request) {
   const { signatureId, contractId } = await req.json();
 
   const now = new Date();
