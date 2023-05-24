@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { prisma } from "../../lib/prismaDb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import DocumentsNotSigned from "@/components/app/DocumentsNotSigned";
+import DocumentsNotSigned from "@/components/documents/DocumentsNotSigned";
 
 const Button = dynamic(() => import("../pdfs/ButtonDowload"), { ssr: false });
 
@@ -22,6 +22,9 @@ async function App() {
           signature: {
             is: null,
           },
+        },
+        include: {
+          template: true,
         },
       },
     },
@@ -44,6 +47,8 @@ async function App() {
             <DocumentsNotSigned
               key={contractNotSigned.id}
               contract={contractNotSigned}
+              name={user.name}
+              userId={user.id}
             />
           ))}
         </div>

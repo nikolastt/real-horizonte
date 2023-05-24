@@ -1,15 +1,20 @@
-import { Contract } from "@prisma/client";
+import { Contract, Signature, Template } from "@prisma/client";
 import React from "react";
 import dateFormat from "dateformat";
 
 import { MdEditDocument } from "react-icons/md";
 import Link from "next/link";
+import { BrowserView, MobileView } from "react-device-detect";
+import ButtonDowload from "@/app/pdfs/ButtonDowload";
+import ModalLinkSignatures from "./modals/ModalLinkSignature";
 
 type Props = {
-  contract: Contract;
+  contract: Contract & { template: Template };
+  name?: string | null;
+  userId?: string;
 };
 
-function DocumentsNotSigned({ contract }: Props) {
+function DocumentsNotSigned({ contract, name, userId }: Props) {
   const dateContract = dateFormat("mm/dd/yyyy");
   const arrayTags = contract.tags.split(", ");
 
@@ -36,12 +41,15 @@ function DocumentsNotSigned({ contract }: Props) {
       </div>
 
       <div className="flex justify-between mt-6">
-        <Link href={`/app/visualizerPdf/${contract.id}`}>
-          <button className="button rounded">Visualizar contrato</button>
-        </Link>
-        <button className="button-secondary rounded">
-          Atribuir assinatura
-        </button>
+        <BrowserView>
+          <Link href={`/app/visualizerPdf/${contract.id}`}>
+            <button className="button rounded">Visualizar contrato</button>
+          </Link>
+        </BrowserView>
+        <MobileView>
+          <ButtonDowload template={contract.template} name={name} />
+        </MobileView>
+        <ModalLinkSignatures userId={userId} />
       </div>
     </div>
   );

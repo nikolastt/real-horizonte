@@ -4,6 +4,7 @@ import React from "react";
 import { FaSignature } from "react-icons/fa";
 
 import { RiHome3Line } from "react-icons/ri";
+import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { RxDashboard } from "react-icons/rx";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import ButtonNav from "./ButtonNav";
@@ -22,9 +23,9 @@ function MenuNav() {
         />
 
         <ButtonNav
-          active={pathName === "/app/dashboard"}
-          Icon={RxDashboard}
-          href="/app/dashboard"
+          active={pathName === "/app/docs"}
+          Icon={HiOutlineDocumentDuplicate}
+          href="/app/docs"
         />
         <ButtonNav
           active={pathName === "/app/signatures"}
