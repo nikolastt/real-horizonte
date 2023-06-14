@@ -22,25 +22,25 @@ export async function POST(req: Request, res: Response) {
         },
       },
     });
+
+    const dataEmail = {
+      name,
+      email,
+    };
+
+    try {
+      await axios.post(
+        "https://real-horizonte.vercel.app/api/emails/newContract",
+        dataEmail
+      );
+
+      return NextResponse.json({ status: "success" });
+    } catch {
+      throw new Error("Erro ao enviar E-mail");
+    }
   } catch (e) {
     console.log(e);
     throw new Error("Erro ao criar contrato");
-  }
-
-  const dataEmail = {
-    name,
-    email,
-  };
-
-  try {
-    await axios.post(
-      "https://real-horizonte.vercel.app/api/emails/newContract",
-      dataEmail
-    );
-
-    return NextResponse.json({ status: "success" });
-  } catch {
-    throw new Error("Erro ao enviar E-mail");
   }
 
   return NextResponse.json({});

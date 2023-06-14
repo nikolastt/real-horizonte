@@ -48,6 +48,7 @@ function ModalLinkSignatures({ userId, contract }: Props) {
     const data = {
       signatureId: signature.id,
       contractId: contract.id,
+      userId: contract.userId,
     };
 
     try {
