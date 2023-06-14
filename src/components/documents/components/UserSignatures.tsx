@@ -5,6 +5,7 @@ import { Signature } from "@prisma/client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CardSignature from "./CardSignature";
+import Link from "next/link";
 
 type Props = {
   userId?: string;
@@ -39,17 +40,38 @@ function UserSignatures({ userId, signinDoc }: Props) {
           <>
             {!signatureSelected ? (
               <>
-                <h2 className=" font-bold  ">Selecione uma assinatura</h2>
-                <div className="grid grid-cols-2 lg:grid-cols-4 mt-6 gap-3 w-full">
-                  {signatures?.map((signature) => (
-                    <CardSignature
-                      key={signature.id}
-                      signature={signature}
-                      setSignature={setSignatureSelected}
-                      clickable
-                    />
-                  ))}
-                </div>
+                {signatures && signatures?.length > 0 && (
+                  <>
+                    <h2 className=" font-bold  ">Selecione uma assinatura</h2>
+                    <div className="grid grid-cols-2 lg:grid-cols-4 mt-6 gap-3 w-full">
+                      {signatures?.map((signature) => (
+                        <CardSignature
+                          key={signature.id}
+                          signature={signature}
+                          setSignature={setSignatureSelected}
+                          clickable
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {signatures && signatures.length === 0 && (
+                  <div className="w-full justify-center pt-24">
+                    <h2 className="text-center">
+                      Você não possui nenhuma assinatura cadastrada!
+                    </h2>
+
+                    <Link
+                      className="flex justify-center pt-6"
+                      href="/app/addSignature"
+                    >
+                      <button className="button rounded">
+                        Criar Assinatura
+                      </button>
+                    </Link>
+                  </div>
+                )}
               </>
             ) : (
               <div className="max-w-5xl mx-auto">

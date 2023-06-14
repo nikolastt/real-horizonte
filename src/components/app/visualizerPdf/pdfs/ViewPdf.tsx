@@ -1,8 +1,9 @@
 "use client";
 
 import ButtonDowload from "@/app/pdfs/ButtonDowload";
+import ModalLinkSignatures from "@/components/documents/modals/ModalLinkSignature";
 import { getPdfFromTemplateController } from "@/helpers/getPdfFromTemplate";
-import { Template } from "@prisma/client";
+import { Contract, Signature, Template, User } from "@prisma/client";
 import { PDFViewer } from "@react-pdf/renderer";
 import React, { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
@@ -12,9 +13,24 @@ type Props = {
   signed?: boolean;
   name?: string | null | undefined;
   imageSignature?: string;
+  userId?: string;
+  contract?:
+    | (Contract & {
+        template: Template;
+        signature: Signature | null;
+        User: User | null;
+      })
+    | null;
 };
 
-function ViewPdf({ template, signed, name, imageSignature }: Props) {
+function ViewPdf({
+  template,
+  signed,
+  name,
+  imageSignature,
+  userId,
+  contract,
+}: Props) {
   const [client, setclient] = useState(false);
 
   const templatePdf = getPdfFromTemplateController(template);
@@ -36,9 +52,10 @@ function ViewPdf({ template, signed, name, imageSignature }: Props) {
 
           <div className="grid lg:grid-cols-2 gap-3 mt-6">
             {!signed && (
-              <button className="button rounded w-full ">
-                Adicionar assinatura ao documento
-              </button>
+              <ModalLinkSignatures
+                userId={userId}
+                contract={contract as Contract}
+              />
             )}
 
             <ButtonDowload

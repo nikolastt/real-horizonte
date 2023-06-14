@@ -11,6 +11,11 @@ datasource db {
   relationMode = "prisma"
 }
 
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "erd.svg"
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -42,16 +47,17 @@ model Session {
 }
 
 model User {
-  id            String      @id @default(cuid())
-  name          String?
-  email         String?     @unique
-  emailVerified DateTime?
-  image         String?
-  admin         Boolean     @default(false)
-  signatures    Signature[]
-  accounts      Account[]
-  sessions      Session[]
-  contracts     Contract[]
+  id             String      @id @default(cuid())
+  name           String?
+  email          String?     @unique
+  emailVerified  DateTime?
+  image          String?
+  admin          Boolean     @default(false)
+  signatures     Signature[]
+  accounts       Account[]
+  sessions       Session[]
+  contracts      Contract[]
+  hashedPassword String?
 }
 
 model VerificationToken {

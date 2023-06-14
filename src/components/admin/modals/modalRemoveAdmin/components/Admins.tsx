@@ -11,14 +11,14 @@ type Props = {
   setUser: (user: User) => void;
 };
 
-function AllUsers({ setUser }: Props) {
+function Admins({ setUser }: Props) {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
   const getUsers = async () => {
     setLoading(true);
     try {
-      const usersDb: User[] = (await axios.get("/api/users/getAll")).data;
+      const usersDb: User[] = (await axios.get("/api/admins")).data;
 
       setUsers(usersDb);
     } catch (e) {
@@ -61,4 +61,4 @@ function AllUsers({ setUser }: Props) {
   );
 }
 
-export default AllUsers;
+export default Admins;

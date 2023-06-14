@@ -67,7 +67,7 @@ export const Pdf = (name, imageSignature) => (
     <Page size="A4" style={tw("p-12")}>
       <View>
         <Text style={tw("text-sm font-bold")}>
-          PROPOSTA DE SEGUROS E AUTOMOVEL RCF-V E APP olá {name}
+          PROPOSTA DE SEGUROS E AUTOMOVEL RCF-V E APP {name && `- ${name}`}
         </Text>
       </View>
 

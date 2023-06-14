@@ -24,7 +24,9 @@ async function VisualizerPdf({ params: { id } }: Props) {
       <ViewPdf
         template={contract?.template}
         signed={signed}
+        userId={contract?.User?.id}
         imageSignature={contract?.signature?.url}
+        contract={contract}
         name={contract?.User?.name}
       />
     </div>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Logo from "/public/images/logo-seguro.png";
 
 type Props = {
   image: string;
@@ -16,6 +17,8 @@ function HeaderApp({ image, name }: Props) {
         height={50}
         className="rounded-full overflow-hidden"
       />
+
+      {/* <Image src={Logo} alt="Logo" width={150} height={150} /> */}
 
       <span className="ml-2 ">Olá, {name}</span>
     </div>

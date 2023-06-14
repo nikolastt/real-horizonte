@@ -28,6 +28,7 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
     "dateformat": "^5.0.3",
     "encoded": "^1.0.0",
     "encoding": "^0.1.13",
@@ -56,10 +57,13 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^10.1.0",
+    "@types/bcrypt": "^5.0.0",
     "@types/dateformat": "^5.0.0",
     "@types/nodemailer": "^6.4.7",
     "@types/react-modal": "^3.16.0",
     "@types/react-signature-canvas": "^1.0.2",
-    "prisma": "^4.14.0"
+    "prisma": "^4.14.0",
+    "prisma-erd-generator": "0.11"
   }
 }

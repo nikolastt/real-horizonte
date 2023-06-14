@@ -1,24 +1,39 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 import Logo from "/public/images/logo-seguro.png";
 import Image from "next/image";
 import GitHubLoginButton from "@/components/app/buttons/GitHubLoginButton";
 import GoogleLoginButton from "@/components/app/buttons/GoogleLoginButton";
+import { signIn } from "next-auth/react";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
+
+  const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signIn("credentials", {
+      email,
+      password,
+      callbackUrl: "/app",
+    });
+  };
+
   return (
     <div className="max-w-lg mx-auto px-3 flex flex-col pt-36 gap-9">
       <Image src={Logo} alt={"Logo"} width={200} priority className="mx-auto" />
       <h1 className="text-2xl font-bold ">Sign in to your account</h1>
 
-      <form action="" className="flex flex-col gap-6 ">
+      <form action="" className="flex flex-col gap-6 " onSubmit={handleForm}>
         <div className="flex flex-col gap-1">
           <label htmlFor="">E-mail</label>
           <input
             className="border-2 border-primary-200 rounded-lg h-10 focus:outline-none focus:border-primary px-3"
             type="email"
             name=""
-            id=""
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -28,10 +43,12 @@ function Login() {
             className="border-2 border-primary-200 rounded-lg h-10 focus:outline-none focus:border-primary px-3"
             type="password"
             name=""
-            id=""
+            onChange={(e) => setpassword(e.target.value)}
           />
         </div>
-        <button className="button-form w-full ">Sign in</button>
+        <button type="submit" className="button-form w-full ">
+          Sign in
+        </button>
       </form>
 
       <div className="flex items-center">
@@ -40,9 +57,9 @@ function Login() {
         <hr className="bg-primary-200 flex-1 border-0 h-px rounded-full" />
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid  gap-3">
         <GoogleLoginButton />
-        <GitHubLoginButton />
+        {/* <GitHubLoginButton /> */}
       </div>
     </div>
   );
