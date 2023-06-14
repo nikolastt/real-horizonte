@@ -17,30 +17,33 @@ function Login() {
 
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (loading === true) {
-      setTimeout(() => {
-        setLoading(false);
-        toast.error("Erro ao realizar Login");
-      }, 5000);
-    }
-  }, [loading]);
+  // useEffect(() => {
+  //   if (loading === true) {
+  //     setTimeout(() => {
+  //       setLoading(false);
+  //       toast.error("Erro ao realizar Login");
+  //     }, 5000);
+  //   }
+  // }, [loading]);
 
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      signIn("credentials", {
-        email,
-        password,
-        callbackUrl: "/app",
-        redirect: false,
+
+    signIn("credentials", {
+      email,
+      password,
+      callbackUrl: "/app",
+      redirect: true,
+    })
+      .then(() => {
+        toast.success("Login Realizado com Sucesso");
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+        toast.error("Erro ao realizar login");
       });
-    } catch (err: any) {
-      setLoading(false);
-      toast.error("Erro ao realizar login");
-      throw new Error(err);
-    }
   };
 
   if (!!loading) {
