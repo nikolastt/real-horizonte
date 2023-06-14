@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Logo from "/public/images/logo-seguro.png";
 import Image from "next/image";
@@ -17,6 +17,15 @@ function Login() {
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (loading === true) {
+      setTimeout(() => {
+        setLoading(false);
+        toast.error("Erro ao realizar Login");
+      }, 5000);
+    }
+  }, [loading]);
+
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -25,8 +34,8 @@ function Login() {
         email,
         password,
         callbackUrl: "/app",
+        redirect: false,
       });
-      toast.success("Login Realizado com sucesso");
     } catch (err: any) {
       setLoading(false);
       toast.error("Erro ao realizar login");
