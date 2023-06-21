@@ -10,12 +10,15 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import ClipLoading from "@/components/ClipLoading";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
 
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   // useEffect(() => {
   //   if (loading === true) {
@@ -26,19 +29,23 @@ function Login() {
   //   }
   // }, [loading]);
 
-  const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
-    signIn("credentials", {
+    await signIn("credentials", {
       email,
       password,
-      callbackUrl: "/app",
-      redirect: true,
+      redirect: false,
     })
-      .then(() => {
-        toast.success("Login Realizado com Sucesso");
-        setLoading(false);
+      .then((data) => {
+        if (data?.error) {
+          setLoading(false);
+          toast.error(`Erro ao realizar login ${data.error}`);
+        } else {
+          router.replace("/app");
+          toast.success("Login Realizado com Sucesso");
+        }
       })
       .catch(() => {
         setLoading(false);
