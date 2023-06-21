@@ -16,7 +16,13 @@ function Header() {
   return (
     <>
       <div className="flex h-[79px] justify-between items-center Container ">
-        <Image src={Logo} alt="Logo" width={100} height={100} className="p-3" />
+        <Image
+          src={Logo}
+          alt="Logo"
+          width={100}
+          height={100}
+          className="p-3 md:scale-125"
+        />
 
         <div className="hidden h-full flex-shrink-0  items-center space-x-6  md:flex ">
           <ul className="flex items-center  p-0 m-0 gap-6  ">
@@ -32,22 +38,16 @@ function Header() {
               <li
                 className={`itemNav   items-center justify-center  hover:scale-105 duration-200`}
               >
-                Quem Somos
-              </li>
-            </a>
-
-            <a href="#typeClasses">
-              <li
-                className={`itemNav   items-center justify-center   hover:scale-105 duration-200`}
-              >
-                Produtos
+                Contato
               </li>
             </a>
 
             <a href="/app">
-              <button className=" px-6 py-1 rounded-xl flex items-center justify-center font-semibold tracking-wider text-white bg-secondary uppercase  hover:bg-opacity-70 hover:text-primary transition-all ease-linear ">
-                App
-              </button>
+              <li
+                className={`itemNav   items-center justify-center  hover:scale-105 duration-200`}
+              >
+                Área do cliente
+              </li>
             </a>
           </ul>
         </div>
