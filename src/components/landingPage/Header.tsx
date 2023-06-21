@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import Logo from "/public/images/logo-seguro.png";
+import Logo from "/public/images/logoGreen.png";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import SideBar from "./SideBar";
 import Link from "next/link";
@@ -16,7 +16,7 @@ function Header() {
   return (
     <>
       <div className="flex h-[79px] justify-between items-center Container ">
-        <Image src={Logo} alt="Logo" width={150} height={150} />
+        <Image src={Logo} alt="Logo" width={100} height={100} className="p-3" />
 
         <div className="hidden h-full flex-shrink-0  items-center space-x-6  md:flex ">
           <ul className="flex items-center  p-0 m-0 gap-6  ">
