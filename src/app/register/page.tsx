@@ -32,6 +32,7 @@ function Register() {
       toast.success("Cadastro realizado com sucesso!");
     } catch (err: any) {
       setLoading(false);
+      console.log(err);
       toast.error("Erro ao cadastrar");
       throw new Error(err);
     }
