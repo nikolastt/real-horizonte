@@ -2,7 +2,12 @@ import { NextResponse } from "next/server";
 import { prisma } from "../../../../lib/prismaDb";
 
 export async function GET() {
-  const users = await prisma.user.findMany();
+  try {
+    const users = await prisma.user.findMany();
+    return NextResponse.json(users);
+  } catch (err) {
+    console.log(err);
+  }
 
-  return NextResponse.json(users);
+  return NextResponse.error();
 }

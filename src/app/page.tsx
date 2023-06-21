@@ -19,6 +19,7 @@ import Bubbles2 from "../../public/images/bubbles2.png";
 
 import Arvore from "../../public/images/arvore.png";
 import Banner from "../../public/images/banner.png";
+import Link from "next/link";
 export default function Home() {
   return (
     <>
@@ -43,11 +44,13 @@ export default function Home() {
             negócio!
           </span>
 
-          <div className="flex justify-center mt-24 md:justify-start md:mt-24">
-            <button className="bg-[#84d353] rounded-full text-white font-bold py-3 w-2/3 md:w-[240px] ">
-              SAIBA MAIS
-            </button>
-          </div>
+          <Link href="/app">
+            <div className="flex justify-center mt-24 md:justify-start md:mt-24">
+              <button className="bg-[#84d353] rounded-full text-white font-bold py-3 w-2/3 md:w-[240px] ">
+                CADASTRAR
+              </button>
+            </div>
+          </Link>
 
           <Image
             src={Pen}
@@ -120,9 +123,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex justify-center mt-20 md:justify-start z-50 md:mt-16">
-                <button className="bg-[#84d353] rounded-full text-white font-bold py-3 w-2/3">
+                <Link
+                  href="/app"
+                  className="bg-[#84d353] rounded-full text-white font-bold py-3 w-2/3 flex justify-center items-center"
+                >
                   Registre-se
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -186,9 +192,12 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center mt-9 md:mt-24">
-              <button className="bg-[#84d353] rounded-full text-white font-bold py-3 w-2/3">
+              <Link
+                href="/app"
+                className="bg-[#84d353] rounded-full text-white font-bold py-3 w-2/3 flex justify-center"
+              >
                 Descubra agora
-              </button>
+              </Link>
             </div>
           </div>
 

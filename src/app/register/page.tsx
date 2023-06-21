@@ -51,7 +51,7 @@ function Register() {
       <>
         <div className="w-full h-screen flex flex-col justify-center items-center px-6 ">
           Registro feito com sucesso Faça Login para continuar
-          <Link href={"/login"} className="w-full mt-6">
+          <Link href={"/login"} className="w-1/2 mt-6">
             <div className="gap-3 flex flex-col">
               <button type="submit" className="button-form w-full ">
                 Login
