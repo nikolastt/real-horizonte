@@ -10,9 +10,12 @@ import ElipseLupa from "../../public/images/EllipseLupa.png";
 import ElipsePaleta from "../../public/images/EllipsePaleta.png";
 import ElipseRelogio from "../../public/images/EllipseRelogio.png";
 import Ticket from "../../public/images/ticket.png";
-import Refresh from "../../public/images/refresh.png";
+import Tel from "../../public/images/tel.png";
 import Elipses from "@/components/landingPage/Elipses";
+import Refresh from "../../public/images/refresh.png";
 
+import Arvore from "../../public/images/arvore.png";
+import Banner from "../../public/images/banner.png";
 export default function Home() {
   return (
     <>
@@ -104,6 +107,53 @@ export default function Home() {
             Registre-se
           </button>
         </div>
+
+        <div className="flex justify-center items-center mt-12 ">
+          <Image src={Tel} alt="Tel" />
+        </div>
+
+        <h2 className="font-black text-2xl text-center mt-6 text-transparent bg-clip-text bg-gradient-to-r from-[#6953D3]   to-[#5EC92C]">
+          + SUSTENTABILIDADE
+        </h2>
+
+        <span className="text-[#333333] text-center text-sm font-light flex justify-center px-3 mt-6">
+          Milhões de toneladas de papel e arquivos são jogadas a natureza devido
+          á assinatura de documentos. Agora isso acabou.{" "}
+        </span>
+
+        <div className="flex justify-evenly px-3 mt-9">
+          <ol className="list-disc text-[#333333]">
+            <li>Economize papel</li>
+            <li>Economize árvores</li>
+            <li>Economize tempo</li>
+          </ol>
+
+          <ol className="list-disc">
+            <li>Ganhe tempo</li>
+            <li>Ganhe clientes</li>
+            <li>Ganhe o mundo!</li>
+          </ol>
+        </div>
+
+        <div className="flex justify-center mt-9">
+          <button className="bg-[#84d353] rounded-full text-white font-bold py-3 w-2/3">
+            Descubra agora
+          </button>
+        </div>
+
+        <div className="flex justify-center mt-9">
+          <Image src={Arvore} alt="arvore" />
+        </div>
+
+        <div className="flex justify-center items-center mt-6">
+          <Image src={Banner} alt="Banner" />
+        </div>
+
+        <hr className="mt-16 w-[90%] mx-auto" />
+
+        <span className="flex justify-center items-center text-center text-sm mt-3 font-thin mb-6">
+          © 2023 copyrights by Green Paper . All Rights Reserved.
+        </span>
       </main>
     </>
   );
