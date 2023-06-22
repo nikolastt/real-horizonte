@@ -69,9 +69,10 @@ model VerificationToken {
 }
 
 model Signature {
-  id       String     @id @default(uuid())
-  url      String
-  path     String
+  id  String @id @default(uuid())
+  url String @db.LongText
+
+  path     String     @db.LongText
   Contract Contract[]
   User     User?      @relation(fields: [userId], references: [id])
   userId   String?

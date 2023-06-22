@@ -33,18 +33,17 @@ function Signature({ userId, email }: Props) {
     const storageRef = ref(storage, String(time));
 
     try {
-      const response = await uploadString(
-        storageRef,
-        trimmedDataURL!,
-        "data_url"
-      );
-      const path = response.ref.fullPath;
-      const urlDowload = await getDownloadURL(response.ref);
+      // const response = await uploadString(
+      //   storageRef,
+      //   trimmedDataURL!,
+      //   "data_url"
+      // );
+      // const path = response.ref.fullPath;
+      // const urlDowload = await getDownloadURL(response.ref);
 
       const data = {
         userId,
-        url: urlDowload,
-        path,
+        url: trimmedDataURL,
       };
       await axios.post("/api/signature", data);
       toast.success("Assinatura adicionada!", {

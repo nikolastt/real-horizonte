@@ -35,7 +35,7 @@ function TrashIcon({ index, id, path }: Props) {
 
     try {
       await axios.post(`/api/signature/delete`, data);
-      await deleteObject(signatureRef);
+      // await deleteObject(signatureRef);
       toast.success("Assinatura excluída", {
         id: notification,
       });
